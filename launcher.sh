@@ -28,13 +28,8 @@ new_window() {
   select_window $1
 }
 
-split_vertical() {
-  tmux split-window -t "$SESSION_NAME:$CURRENT_WINDOW.$CURRENT_PANE" -c "$ROOT" -v -l $1
-  select_pane $(($CURRENT_PANE + 1))
-}
-
-split_horizontal() {
-  tmux split-window -t "$SESSION_NAME:$CURRENT_WINDOW.$CURRENT_PANE" -c "$ROOT" -h -l $1
+split_pane() {
+  tmux split-window -t "$SESSION_NAME:$CURRENT_WINDOW.$CURRENT_PANE" -c "$ROOT" -l $1 $2
   select_pane $(($CURRENT_PANE + 1))
 }
 

@@ -7,6 +7,6 @@ new_session
 rename_window "code"
 run_command "nvim"
 new_window "servers"
-split_horizontal 50%
+split_pane 50% -v
 
 attach_to_session
