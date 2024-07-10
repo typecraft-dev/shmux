@@ -19,8 +19,13 @@ select_pane() {
 }
 
 new_session() {
-  dir=$(readlink --canonicalize "$ROOT")
+  dir=$(readlink -f "$ROOT")
   tmux new-session -d -s "$SESSION_NAME" -c "$ROOT"
+}
+
+# Check if the session exists
+session_exists() {
+  tmux has-session -t "$SESSION_NAME" 
 }
 
 new_window() {
