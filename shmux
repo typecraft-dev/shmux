@@ -1,0 +1,61 @@
+#!/usr/bin/env sh
+
+. ./lib/utils.sh
+. ./lib/mgmt.sh
+
+while :; do
+	case $1 in
+	-h | -\? | --help | help)
+		show_help
+		exit
+		;;
+	check | check_for_project)
+		if [ -n "$2" ]; then
+			shift
+			check_for_project "$@"
+		else
+			print_error "$1"
+			exit 1
+		fi
+		;;
+	new | new_project)
+		if [ -n "$2" ]; then
+			shift
+			new_project "$@"
+		else
+			print_error "$1"
+			exit 1
+		fi
+		;;
+	load | load_project)
+		if [ -n "$2" ]; then
+			shift
+			load_project "$@"
+		else
+			print_error "$1"
+			exit 1
+		fi
+		;;
+	edit | edit_project)
+		if [ -n "$2" ]; then
+			shift
+			edit_project "$@"
+		else
+			print_error "$1"
+			exit 1
+		fi
+		;;
+	--) # End of all options. Passthru additional options to tmux?
+		shift
+		break
+		;;
+	-?*)
+		printf 'ERROR: Unknown option: %s\n' "$1" >&2
+		exit 1
+		;;
+	*) # Default case: If no more options then break out of the loop.
+		break ;;
+	esac
+
+	shift
+done
