@@ -1,4 +1,4 @@
-. ./functions.sh
+. ./util/functions.sh
 
 # Set up your project with a root dir, and name
 project_root ~/Projects/my_project
